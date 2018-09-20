@@ -14,11 +14,16 @@
         </thead>
         <tbody>
         <tr>
-            {%for melon in session["cart"]%}
-            <td>{{ melon }}</td>
-            <td>{{ session["cart"][melon] }}</td>
-            <td>{{ get_by_id[melon][price] }}</td>
-            {%endfor%}
+            {% for melon in melon_list %}
+             <tr>
+            <td>{{ melon.melon_id }}</td>
+            <td>{{ session["cart"][melon.melon_id] }}</td>
+            <td>{{ melon.price}}</td>
+            <td>{{ melon.price*session['cart'][melon.melon_id]}} </td>
+             </tr>
+         
+         
+            {% endfor %}
             
             {#
             <td>Ancient Watermelon</td>
@@ -49,7 +54,7 @@
         </tbody>
     </table>
 
-    <h3>Total: $27.00</h3>
+    <h3>Total: {{total_cost}}</h3>
 
     <a href="/checkout" class="btn btn-large btn-primary">Check Out</a>
 
